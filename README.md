@@ -1,2 +1,2 @@
-# haskell-starter
+# HASKELL BASICS
 code guru
