@@ -1,0 +1,135 @@
+-- HC3T1: Check if a number is positive, negative, or zero
+checkNumber :: Int -> String
+checkNumber n =
+    if n > 0 then "Positive"
+    else if n < 0 then "Negative"
+    else "Zero"
+
+-- HC3T2: Determine grade using guards
+grade :: Int -> String
+grade score
+    | score >= 90 = "A"
+    | score >= 80 = "B"
+    | score >= 70 = "C"
+    | score >= 60 = "D"
+    | otherwise = "F"
+
+-- HC3T3: RGB to hex without showHex
+padZero :: String -> String
+padZero s = if length s == 1 then '0':s else s
+
+toHexDigit :: Int -> String
+toHexDigit n
+    | n < 10    = [toEnum (n + 48)]     -- 0-9
+    | otherwise = [toEnum (n + 87)]     -- a-f
+
+toHex :: Int -> String
+toHex n =
+    let high = n `div` 16
+        low = n `mod` 16
+    in padZero (toHexDigit high ++ toHexDigit low)
+
+rgbToHex :: (Int, Int, Int) -> String
+rgbToHex (r, g, b) = "#" ++ toHex r ++ toHex g ++ toHex b
+
+-- HC3T4: Triangle area using Heron's formula
+triangleArea :: Float -> Float -> Float -> Float
+triangleArea a b c =
+    let s = (a + b + c) / 2
+    in sqrt (s * (s - a) * (s - b) * (s - c))
+
+-- HC3T5: Triangle type
+triangleType :: Float -> Float -> Float -> String
+triangleType a b c
+    | a == b && b == c = "Equilateral"
+    | a == b || b == c || a == c = "Isosceles"
+    | otherwise = "Scalene"
+
+-- HC3T6: Leap year check
+isLeapYear :: Int -> Bool
+isLeapYear year =
+    if year `mod` 400 == 0 then True
+    else if year `mod` 100 == 0 then False
+    else year `mod` 4 == 0
+
+-- HC3T7: Season based on month
+season :: Int -> String
+season month
+    | month == 12 || month == 1 || month == 2 = "Winter"
+    | month >= 3 && month <= 5 = "Spring"
+    | month >= 6 && month <= 8 = "Summer"
+    | month >= 9 && month <= 11 = "Autumn"
+    | otherwise = "Invalid"
+
+-- HC3T8: BMI category
+bmiCategory :: Float -> Float -> String
+bmiCategory weight height
+    | bmi < 18.5 = "Underweight"
+    | bmi < 25 = "Normal"
+    | bmi < 30 = "Overweight"
+    | otherwise = "Obese"
+    where bmi = weight / (height * height)
+
+-- HC3T9: Max of three
+maxOfThree :: Int -> Int -> Int -> Int
+maxOfThree x y z =
+    let m1 = max x y
+        m2 = max m1 z
+    in m2
+
+-- HC3T10: Palindrome check
+isPalindrome :: String -> Bool
+isPalindrome str
+    | length str <= 1 = True
+    | head str == last str = isPalindrome (init (tail str))
+    | otherwise = False
+
+-- MAIN
+main :: IO ()
+main = do
+    putStrLn "-- HC3T1 --"
+    print $ checkNumber 5
+    print $ checkNumber (-3)
+    print $ checkNumber 0
+
+    putStrLn "\n-- HC3T2 --"
+    print $ grade 95
+    print $ grade 72
+    print $ grade 50
+
+    putStrLn "\n-- HC3T3 --"
+    print $ rgbToHex (255, 0, 127)
+    print $ rgbToHex (0, 255, 64)
+
+    putStrLn "\n-- HC3T4 --"
+    print $ triangleArea 3 4 5
+    print $ triangleArea 7 8 9
+
+    putStrLn "\n-- HC3T5 --"
+    print $ triangleType 3 3 3
+    print $ triangleType 5 5 8
+    print $ triangleType 6 7 8
+
+    putStrLn "\n-- HC3T6 --"
+    print $ isLeapYear 2000
+    print $ isLeapYear 1900
+    print $ isLeapYear 2024
+
+    putStrLn "\n-- HC3T7 --"
+    print $ season 3
+    print $ season 7
+    print $ season 11
+
+    putStrLn "\n-- HC3T8 --"
+    print $ bmiCategory 70 1.75
+    print $ bmiCategory 90 1.8
+
+    putStrLn "\n-- HC3T9 --"
+    print $ maxOfThree 10 20 15
+    print $ maxOfThree 5 25 10
+
+    putStrLn "\n-- HC3T10 --"
+    print $ isPalindrome "racecar"
+    print $ isPalindrome "haskell"
+    print $ isPalindrome "madam"
+
