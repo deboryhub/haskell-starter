@@ -1,0 +1,135 @@
+-- HC2T1 - Simulated Type Checking (hardcoded outputs for types)
+typeOf42 :: String
+typeOf42 = "42 :: Int"
+
+typeOfPi :: String
+typeOfPi = "3.14 :: Fractional a => a (usually Double)"
+
+typeOfString :: String
+typeOfString = "\"Haskell\" :: String"
+
+typeOfChar :: String
+typeOfChar = "'Z' :: Char"
+
+typeOfBoolExpr :: String
+typeOfBoolExpr = "True && False :: Bool"
+
+-- HC2T2 - Function Signatures and Definitions
+add :: Int -> Int -> Int
+add x y = x + y
+
+isEven :: Int -> Bool
+isEven x = x `mod` 2 == 0
+
+concatStrings :: String -> String -> String
+concatStrings s1 s2 = s1 ++ s2
+
+-- HC2T3 - Immutable Variables
+myAge :: Int
+myAge = 25
+
+piValue :: Double
+piValue = 3.14159
+
+greeting :: String
+greeting = "Hello, Haskell!"
+
+isHaskellFun :: Bool
+isHaskellFun = True
+
+-- HC2T4 - Infix and Prefix Examples
+prefixAdd :: Int
+prefixAdd = (+) 5 3
+
+prefixMul :: Int
+prefixMul = (*) 10 4
+
+prefixAnd :: Bool
+prefixAnd = (&&) True False
+
+infixAdd :: Int
+infixAdd = 7 + 2
+
+infixMul :: Int
+infixMul = 6 * 5
+
+infixAnd :: Bool
+infixAnd = True && False
+
+-- HC2T5 - Function Definitions
+circleArea :: Float -> Float
+circleArea r = pi * r * r
+
+maxOfThree :: Int -> Int -> Int -> Int
+maxOfThree a b c = max a (max b c)
+
+-- HC2T6 - Int vs Integer
+smallNumber :: Int
+smallNumber = 262
+
+bigNumber :: Integer
+bigNumber = 2127
+
+-- HC2T7 - Boolean Expressions
+boolExpr1 :: Bool
+boolExpr1 = True && True
+
+boolExpr2 :: Bool
+boolExpr2 = False || False
+
+boolExpr3 :: Bool
+boolExpr3 = not False
+
+boolExpr4 :: Bool
+boolExpr4 = 5 > 10
+
+-- MAIN FUNCTION
+main :: IO ()
+main = do
+    -- HC2T1 - Simulated Type Checks
+    putStrLn "=== HC2T1 - Type Checking ==="
+    putStrLn typeOf42
+    putStrLn typeOfPi
+    putStrLn typeOfString
+    putStrLn typeOfChar
+    putStrLn typeOfBoolExpr
+
+    -- HC2T2 - Function Outputs
+    putStrLn "\n=== HC2T2 - Function Outputs ==="
+    print $ add 5 7
+    print $ isEven 10
+    print $ concatStrings "Good " "Morning"
+
+    -- HC2T3 - Immutable Variables
+    putStrLn "\n=== HC2T3 - Immutable Variables ==="
+    print myAge
+    print piValue
+    print greeting
+    print isHaskellFun
+
+    -- HC2T4 - Infix and Prefix
+    putStrLn "\n=== HC2T4 - Infix and Prefix Notation ==="
+    print prefixAdd
+    print prefixMul
+    print prefixAnd
+    print infixAdd
+    print infixMul
+    print infixAnd
+
+    -- HC2T5 - Custom Functions
+    putStrLn "\n=== HC2T5 - Custom Functions ==="
+    print $ circleArea 6.0
+    print $ maxOfThree 8 12 10
+
+    -- HC2T6 - Int vs Integer
+    putStrLn "\n=== HC2T6 - Int vs Integer ==="
+    print smallNumber
+    print bigNumber
+    putStrLn "Note: 2^64 as Int may overflow. Run manually: 2^64 :: Int"
+
+    -- HC2T7 - Boolean Expressions
+    putStrLn "\n=== HC2T7 - Boolean Expressions ==="
+    print boolExpr1
+    print boolExpr2
+    print boolExpr3
+    print boolExpr4
