@@ -1,0 +1,140 @@
+-- HC8T1: Type Synonyms and Basic Function
+type Address = String
+type Value = Int
+
+generateTx :: Address -> Address -> Value -> String
+generateTx fromAddr toAddr val =
+  "From: " ++ fromAddr ++ ", To: " ++ toAddr ++ ", Value: " ++ show val
+
+-- HC8T2: New Types and Data Constructors
+data PaymentMethod = Cash | Card | Cryptocurrency deriving Show
+
+data Person = Person
+  { pname :: String
+  , paddress :: (String, Int)
+  , pmethod :: PaymentMethod
+  } deriving Show
+
+bob :: Person
+bob = Person "Bob" ("Main Street", 101) Cash
+
+-- HC8T3: Algebraic Data Types and Functions
+data Shape = Circle Float | Rectangle Float Float deriving Show
+
+area :: Shape -> Float
+area (Circle r) = pi * r * r
+area (Rectangle w h) = w * h
+
+-- HC8T4: Record Syntax for Employee
+data Employee = Employee
+  { ename :: String
+  , experienceInYears :: Float
+  } deriving Show
+
+richard :: Employee
+richard = Employee "Richard" 7.5
+
+-- HC8T5: Record Syntax for Person
+data Person2 = Person2
+  { name :: String
+  , age :: Int
+  , isEmployed :: Bool
+  } deriving Show
+
+person1 :: Person2
+person1 = Person2 "Alice" 30 True
+
+person2 :: Person2
+person2 = Person2 "Charlie" 25 False
+
+-- HC8T6: Record Syntax for Shape Variants
+data Shape2
+  = Circle2 { center :: (Float, Float), color :: String, radius :: Float }
+  | Rectangle2 { width :: Float, height :: Float, color :: String }
+  deriving Show
+
+circleEx :: Shape2
+circleEx = Circle2 { center = (0, 0), color = "Red", radius = 5.0 }
+
+rectangleEx :: Shape2
+rectangleEx = Rectangle2 { width = 10.0, height = 6.0, color = "Blue" }
+
+-- HC8T7: Data Types and Describing Animals
+data Animal = Dog String | Cat String deriving Show
+
+describeAnimal :: Animal -> String
+describeAnimal (Dog n) = "This is a dog named " ++ n
+describeAnimal (Cat n) = "This is a cat named " ++ n
+
+dogEx :: Animal
+dogEx = Dog "Rex"
+
+catEx :: Animal
+catEx = Cat "Whiskers"
+
+-- HC8T8: Type Synonyms and Greeting Function
+type Name = String
+type Age = Int
+
+greet :: Name -> Age -> String
+greet n a = "Hello, my name is " ++ n ++ " and I am " ++ show a ++ " years old."
+
+-- HC8T9: Record Type and Transaction Function
+data Transaction = Transaction
+  { from :: Address
+  , to :: Address
+  , amount :: Value
+  , transactionId :: String
+  } deriving Show
+
+createTransaction :: Address -> Address -> Value -> String
+createTransaction fromAddr toAddr val =
+  let tx = Transaction fromAddr toAddr val "TX12345"
+  in transactionId tx
+
+-- HC8T10: Deriving Show for Book
+data Book = Book
+  { title :: String
+  , author :: String
+  , year :: Int
+  } deriving Show
+
+bookEx :: Book
+bookEx = Book "The Great Gatsby" "F. Scott Fitzgerald" 1925
+
+-- Main: Run examples for all tasks
+main :: IO ()
+main = do
+  putStrLn "HC8T1: generateTx"
+  putStrLn (generateTx "Alice" "Bob" 50)
+
+  putStrLn "\nHC8T2: bob person"
+  print bob
+
+  putStrLn "\nHC8T3: area of Circle and Rectangle"
+  print (area (Circle 5))
+  print (area (Rectangle 10 5))
+
+  putStrLn "\nHC8T4: richard employee"
+  print richard
+
+  putStrLn "\nHC8T5: person1 and person2"
+  print person1
+  print person2
+
+  putStrLn "\nHC8T6: circleEx and rectangleEx"
+  print circleEx
+  print rectangleEx
+
+  putStrLn "\nHC8T7: describeAnimal"
+  putStrLn (describeAnimal dogEx)
+  putStrLn (describeAnimal catEx)
+
+  putStrLn "\nHC8T8: greet"
+  putStrLn (greet "Alice" 30)
+
+  putStrLn "\nHC8T9: createTransaction"
+  putStrLn (createTransaction "Alice" "Bob" 100)
+
+  putStrLn "\nHC8T10: bookEx"
+  print bookEx
